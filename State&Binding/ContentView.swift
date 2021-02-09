@@ -8,14 +8,32 @@
 import SwiftUI
 
 struct ContentView: View {
+  @State var placeholderText = "Hello world" //appcycle ma yesko state change huncha so state variable
+    
     var body: some View {
-        Text("Hello")
+        Text("\(placeholderText)")
+        
+        Dog(placeholderText1: $placeholderText)
+        
+        Button {
+            self.placeholderText = "Meow"
+        } label: {
+            Text("Cat Says")
+        }
+
             
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
+struct Dog : View {
+    @Binding var placeholderText1: String
+    var body: some View{
+        Button {
+            self.placeholderText1 = "Woof" //Since we are changing this value we must constantly check for its state
+        } label: {
+            Text("Dogs Says")
+        }
     }
 }
+
+
